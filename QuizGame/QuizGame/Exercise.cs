@@ -8,6 +8,31 @@ namespace QuizGame
 {
     internal class Exercise
     {
+
+        void TestOne()
+        {
+               var numbers = new List<int>() { 78, 43, 12, 893, 19, 4, 563, 81, 12, 521, 5, 29 };
+                numbers.Add(3678);
+            //var selected = numbers.Where(n => n >= 50);
+            //foreach (var item in selected)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            var oneElement = numbers.FirstOrDefault(n => n > 100000000);
+                Console.WriteLine(oneElement);
+
+            var ordered = numbers.OrderByDescending(n => n);
+
+            foreach (var item in ordered)
+            {
+                Console.WriteLine(item);
+            }
+
+            var sum = numbers.Sum();
+            Console.WriteLine(sum);
+        }
+
         void Test()
         {
             //var list = new List<string>();

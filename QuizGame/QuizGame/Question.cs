@@ -15,7 +15,7 @@
             Console.WriteLine(Content);
             Console.WriteLine();
             foreach (var a in Answers)
-                Console.WriteLine(a.Id + ". " + a.Content);
+                Console.WriteLine(a.DisplayOrder + ". " + a.Content);
 
             Console.WriteLine();
             Console.Write("Proszę nacisnąć 1, 2, 3 lub 4 => ");
