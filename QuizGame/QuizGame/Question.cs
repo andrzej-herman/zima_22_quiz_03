@@ -7,8 +7,29 @@
         public string Content { get; set; }
         public List<Answer> Answers { get; set; }
 
-        public void Display()
+        public int Display()
         {
+            while(true)
+            {
+                QuestionText();
+                if (int.TryParse(Console.ReadLine(), out int x) && x > 0 && x < 5)
+                {
+                    return x;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor= ConsoleColor.Red;  
+                    Console.WriteLine("Nacisnąłeś nieprawidłowy klawisz");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+        }
+
+
+        private void QuestionText()
+        {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("Pytanie za " + Category + " pkt");
             Console.WriteLine();

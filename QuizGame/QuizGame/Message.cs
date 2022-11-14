@@ -8,6 +8,32 @@ namespace QuizGame
 {
     class Message
     {
+        internal void DisplayGameOver()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Niestety to zła odpowiedź.");
+            Console.WriteLine("GAME OVER");
+        }
+
+        internal void ShowFinalScreen()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Brawo, udało CI się ukończyć cały Quiz !!!");
+            Console.WriteLine("GAME OVER");
+        }
+
+        internal void ShowGoodAnswer()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Brawo, to poprawna odpowiedź.");
+            Console.WriteLine("Naciśnij ENTER aby zobaczyć następne pyranie ...");
+            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         internal void ShowWelcomeScreen()
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -20,6 +46,9 @@ namespace QuizGame
             Console.WriteLine("**     GOOD LUCK !!!  **");
             Console.WriteLine("************************");
             Console.WriteLine();
+            Console.WriteLine("Nacisnij ENTER aby rozpoczac grę ...");
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }

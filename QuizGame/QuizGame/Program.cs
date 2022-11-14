@@ -1,22 +1,30 @@
-﻿
-using QuizGame;
+﻿using QuizGame;
 
-short index = 1;
+var game = new Game();
+var message = new Message();
+// Show Welcome Screen
+message.ShowWelcomeScreen();
+// GetQuestion
 while (true)
 {
-    Console.WriteLine(index);
-    index++;
+    game.GetQuestion();
+    var playerAnswer = game.CurrentQuestion.Display();
+    if (game.IsCorrectAnswer(playerAnswer))
+    {
+        if (game.IsFinalQuestion())
+        {
+            message.ShowFinalScreen();
+            break;
+        }
+        else
+        {
+            message.ShowGoodAnswer();
+        }
+    }
+    else
+    {
+        message.DisplayGameOver();
+        break;
+    }
 }
 
-//var game = new Game();
-//var message = new Message();
-
-//// Show Welcome Screen
-//message.ShowWelcomeScreen();
-
-//// GetQuestion
-//game.GetQuestion();
-//game.CurrentQuestion.Display();
-//Console.WriteLine();
-//Console.WriteLine();
-//Console.ReadLine();

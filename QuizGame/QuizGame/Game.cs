@@ -14,9 +14,17 @@ namespace QuizGame
         // konstruktor
         public Game()
         {
-            CurrentCategory = 100;
+            
             CreateQuestions();
             Random = new Random();
+            Categories = AllQuestions
+                .Select(q => q.Category)
+                .Distinct()
+                .OrderBy(x => x).ToList();
+
+            //Categories = new List<int> { 100, 200, 300, 400, 500, 750, 1000 };
+
+            CurrentCategory = Categories[CurrentCategoryIndex];
         }
 
         // właściwości
@@ -24,7 +32,8 @@ namespace QuizGame
         public int CurrentCategory { get; set; }
         public Question CurrentQuestion { get; set; }
         public Random Random { get; set; }
-
+        public List<int> Categories { get; set; }
+        public int CurrentCategoryIndex { get; set; }
 
         // create all questions
         private void CreateQuestions()
@@ -48,13 +57,27 @@ namespace QuizGame
                 index++;
             }
             
-            
             CurrentQuestion = selectedQuestion;
         }
 
+
+        public bool IsCorrectAnswer(int playerAnswer)
+        {
+            return CurrentQuestion.Answers.First(a => a.DisplayOrder == playerAnswer).IsCorrect;
+        }
+
+        public bool IsFinalQuestion()
+        {
+            if (CurrentCategoryIndex == 6) return true;
+            else
+            {
+                CurrentCategoryIndex++;
+                CurrentCategory = Categories[CurrentCategoryIndex];
+                return false;
+            }
+        }
 
     }
 }
 
 
-// 100, 200, 500, 1000, 5000
