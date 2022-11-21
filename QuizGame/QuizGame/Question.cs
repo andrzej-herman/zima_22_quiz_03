@@ -7,14 +7,17 @@
         public string Content { get; set; }
         public List<Answer> Answers { get; set; }
 
-        public int Display()
+        public int Display(bool canUseWheel)
         {
-            while(true)
+            while (true)
             {
-                QuestionText();
-                if (int.TryParse(Console.ReadLine(), out int x) && x > 0 && x < 5)
+                QuestionText(canUseWheel);
+                var key = Console.ReadLine();
+                if (IsCorrectKey(key))
                 {
-                    return x;
+                    if (key.ToLower() == "k") return 5;
+                    else
+                      return int.Parse(key);  
                 }
                 else
                 {
@@ -26,8 +29,17 @@
             }
         }
 
+        private bool IsCorrectKey(string key)
+        {
+            if (key.ToLower() == key.ToLower()) return true;
+            if (int.TryParse(Console.ReadLine(), out int x) && x > 0 && x < 5)
+                return true;
 
-        private void QuestionText()
+            return false;
+        }
+
+
+        private void QuestionText(bool canUseWheel)
         {
             Console.Clear();
             Console.WriteLine();
@@ -39,7 +51,13 @@
                 Console.WriteLine(a.DisplayOrder + ". " + a.Content);
 
             Console.WriteLine();
-            Console.Write("Proszę nacisnąć 1, 2, 3 lub 4 => ");
+
+            var message = canUseWheel
+                ? "Proszę nacisnąć 1, 2, 3, 4 lub naciśnij K aby użyć koła ratunkowego => "
+                : "Proszę nacisnąć 1, 2, 3 lub 4 => ";
+
+            Console.WriteLine(message);
+
         }
     }
 }

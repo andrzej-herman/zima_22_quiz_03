@@ -25,6 +25,7 @@ namespace QuizGame
             //Categories = new List<int> { 100, 200, 300, 400, 500, 750, 1000 };
 
             CurrentCategory = Categories[CurrentCategoryIndex];
+            CanUseWheel= true;
         }
 
         // właściwości
@@ -34,6 +35,8 @@ namespace QuizGame
         public Random Random { get; set; }
         public List<int> Categories { get; set; }
         public int CurrentCategoryIndex { get; set; }
+        public bool CanUseWheel { get; set; }
+
 
         // create all questions
         private void CreateQuestions()
@@ -77,6 +80,13 @@ namespace QuizGame
             }
         }
 
+        public void EliminateTwoAnswers()
+        {
+            var badAnswers = CurrentQuestion.Answers.Where(a => !a.IsCorrect);
+            var removed = badAnswers.OrderBy(a => Random.Next()).Take(2).ToList();
+            CurrentQuestion.Answers.Remove(removed[0]);
+            CurrentQuestion.Answers.Remove(removed[1]);
+        }
     }
 }
 
