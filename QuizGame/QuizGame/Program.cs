@@ -1,19 +1,39 @@
-﻿using QuizGame;
+﻿using Quiz;
+using QuizGame;
+using System;
 
+
+
+decimal price = 34.50m;
+Console.WriteLine(CurrencyTools.ConvertToCurrency(price));
+
+
+
+
+
+
+
+
+
+
+// utworzyliśmy obiekt typu Game
 var game = new Game();
-var message = new Message();
+
+// utworzyliśmy obiekt typu Message
+
+
 // Show Welcome Screen
-message.ShowWelcomeScreen();
+Message.ShowWelcomeScreen();
 // GetQuestion
 while (true)
 {
     game.GetQuestion();
-    var playerAnswer = game.CurrentQuestion.Display(game.CanUseWheel);
+    var playerAnswer = Message.Display(game.CurrentQuestion, game.CanUseWheel);
     if (playerAnswer == 5)
     {
         game.CanUseWheel = false;
         game.EliminateTwoAnswers();
-        playerAnswer = game.CurrentQuestion.Display(game.CanUseWheel);
+        playerAnswer = Message.Display(game.CurrentQuestion, game.CanUseWheel);
     }
 
 
@@ -21,17 +41,17 @@ while (true)
     {
         if (game.IsFinalQuestion())
         {
-            message.ShowFinalScreen();
+            Message.ShowFinalScreen();
             break;
         }
         else
         {
-            message.ShowGoodAnswer();
+            Message.ShowGoodAnswer();
         }
     }
     else
     {
-        message.DisplayGameOver();
+        Message.DisplayGameOver();
         break;
     }
 }

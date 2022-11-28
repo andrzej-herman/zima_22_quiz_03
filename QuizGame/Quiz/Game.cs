@@ -1,20 +1,13 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace QuizGame
+namespace Quiz
 {
     public class Game
     {
         // konstruktor
         public Game()
         {
-            
+
             CreateQuestions();
             Random = new Random();
             Categories = AllQuestions
@@ -25,7 +18,7 @@ namespace QuizGame
             //Categories = new List<int> { 100, 200, 300, 400, 500, 750, 1000 };
 
             CurrentCategory = Categories[CurrentCategoryIndex];
-            CanUseWheel= true;
+            CanUseWheel = true;
         }
 
         // właściwości
@@ -59,7 +52,7 @@ namespace QuizGame
                 a.DisplayOrder = index;
                 index++;
             }
-            
+
             CurrentQuestion = selectedQuestion;
         }
 
@@ -89,5 +82,3 @@ namespace QuizGame
         }
     }
 }
-
-
